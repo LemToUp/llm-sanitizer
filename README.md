@@ -26,8 +26,8 @@ The extension identifies clickbait, emotional pressure, fear-mongering, false ur
 ## Installation
 
 ```bash
-git clone <repo-url>
-cd BrowsExt
+git clone git@github.com:LemToUp/llm-sanitizer.git
+cd llm-sanitizer
 npm install
 npm run build
 ```
