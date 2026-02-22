@@ -1,0 +1,346 @@
+/* ── Theme variables ── */
+
+.modal {
+    --bg: #1e1e1e;
+    --text: #e0e0e0;
+    --text-muted: #aaa;
+    --text-dimmed: #888;
+    --text-faint: #777;
+    --border: rgba(255,255,255,0.1);
+    --border-subtle: rgba(255,255,255,0.07);
+    --border-faint: rgba(255,255,255,0.08);
+    --surface: rgba(255,255,255,0.05);
+    --surface-hover: rgba(255,255,255,0.1);
+    --surface-active: rgba(255,255,255,0.12);
+    --surface-close-hover: rgba(255,255,255,0.15);
+    --shadow: rgba(0,0,0,0.4);
+    --shadow-btn: rgba(0,0,0,0.3);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --accent: #4caf50;
+    --spinner-track: rgba(255,255,255,0.1);
+    --bar-track: rgba(255,255,255,0.08);
+    --error: #ff6b6b;
+    --scrollbar-thumb: rgba(255,255,255,0.12);
+    --scrollbar-thumb-hover: rgba(255,255,255,0.22);
+}
+
+.modal[data-theme="light"] {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --text-dimmed: #666;
+    --text-faint: #888;
+    --border: rgba(0,0,0,0.12);
+    --border-subtle: rgba(0,0,0,0.08);
+    --border-faint: rgba(0,0,0,0.1);
+    --surface: rgba(0,0,0,0.04);
+    --surface-hover: rgba(0,0,0,0.08);
+    --surface-active: rgba(0,0,0,0.1);
+    --surface-close-hover: rgba(0,0,0,0.12);
+    --shadow: rgba(0,0,0,0.15);
+    --shadow-btn: rgba(0,0,0,0.1);
+    --overlay-bg: rgba(0, 0, 0, 0.4);
+    --accent: #2e7d32;
+    --spinner-track: rgba(0,0,0,0.1);
+    --bar-track: rgba(0,0,0,0.08);
+    --error: #d32f2f;
+    --scrollbar-thumb: rgba(0,0,0,0.15);
+    --scrollbar-thumb-hover: rgba(0,0,0,0.3);
+}
+
+/* ── Overlay ── */
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ── Modal ── */
+
+.modal {
+    background: var(--bg);
+    color: var(--text);
+    width: 90%;
+    max-width: 800px;
+    height: 85vh;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px var(--shadow);
+    font-family: 'Inter', -apple-system, sans-serif;
+    border: 1px solid var(--border);
+    animation: slideUp 0.3s ease;
+    outline: none;
+    overflow: hidden;
+}
+
+/* ── Header (sticky) ── */
+
+.header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.close-btn {
+    background: var(--surface);
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    background: var(--surface-close-hover);
+    color: var(--text);
+}
+
+/* ── Settings expansion panel ── */
+
+.settings-toggle {
+    background: var(--surface);
+    border: 1px solid var(--border-faint);
+    color: var(--text-dimmed);
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-family: inherit;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.settings-toggle:hover {
+    background: var(--surface-hover);
+    color: var(--text-muted);
+}
+
+.settings-toggle.open {
+    background: var(--surface-hover);
+    color: var(--text-muted);
+}
+
+.settings-toggle svg {
+    transition: transform 0.2s;
+}
+
+.settings-toggle.open svg {
+    transform: rotate(180deg);
+}
+
+.settings-panel {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease, padding 0.25s ease;
+    padding: 0 16px;
+    border-bottom: 1px solid transparent;
+    flex-shrink: 0;
+}
+
+.settings-panel.open {
+    max-height: 120px;
+    opacity: 1;
+    padding: 10px 16px;
+    border-bottom-color: var(--border-subtle);
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.settings-row:last-child {
+    margin-bottom: 0;
+}
+
+.settings-label {
+    font-size: 12px;
+    color: var(--text-faint);
+    white-space: nowrap;
+    min-width: 46px;
+}
+
+/* ── Toggle button group (verbosity / theme) ── */
+
+.toggle-group {
+    display: flex;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 2px;
+    border: 1px solid var(--border-faint);
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-dimmed);
+    cursor: pointer;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-family: inherit;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.toggle-btn:hover {
+    color: var(--text-muted);
+}
+
+.toggle-btn.active {
+    background: var(--surface-active);
+    color: var(--text);
+    box-shadow: 0 1px 3px var(--shadow-btn);
+}
+
+/* ── Scrollable body ── */
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 20px 30px 30px;
+    min-height: 0;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+.content {
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.content p {
+    margin-bottom: 1.2em;
+}
+
+.error .content {
+    color: var(--error);
+}
+
+/* ── Status indicator ── */
+
+.status {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.status-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.status-label::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--spinner-track);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.status-bar {
+    height: 3px;
+    background: var(--bar-track);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.status-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.status-bar-fill.indeterminate {
+    width: 40% !important;
+    animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+/* ── Error ── */
+
+.error-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--error);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.error-icon svg {
+    flex-shrink: 0;
+}
+
+/* ── Animations ── */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes indeterminate {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

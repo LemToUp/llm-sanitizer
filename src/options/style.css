@@ -1,0 +1,229 @@
+:root {
+    --primary: #4caf50;
+    --primary-hover: #43a047;
+    --bg: #0f0f0f;
+    --surface: #1e1e1e;
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --accent: #bb86fc;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
+
+.settings-card {
+    background: var(--surface);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+input,
+textarea,
+select {
+    background: #121212;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a0a0a0' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+select option {
+    background: #1e1e1e;
+    color: var(--text);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.input-hint,
+.field-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: flex-start;
+}
+
+.primary-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.status-msg {
+    color: var(--primary);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.status-msg.visible {
+    opacity: 1;
+}
+
+/* Section headings inside cards */
+
+.section-title {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.section-desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Search provider fields */
+
+.search-provider {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.search-provider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-provider-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    background: rgba(76, 175, 80, 0.15);
+    color: var(--primary);
+}
+
+.search-badge.active {
+    background: rgba(76, 175, 80, 0.25);
+}
+
+.search-quota {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.search-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.search-fields.has-extra {
+    grid-template-columns: 1fr 1fr;
+}
+
+.search-providers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

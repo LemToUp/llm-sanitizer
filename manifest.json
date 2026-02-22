@@ -1,0 +1,40 @@
+{
+    "manifest_version": 3,
+    "name": "LLM News Sanitizer",
+    "version": "1.0.0",
+    "description": "Sanitize news content using Chrome built-in Rewriter API",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "options_ui": {
+        "page": "src/options/index.html",
+        "open_in_tab": true
+    },
+    "background": {
+        "service_worker": "src/background/index.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content/index.js"
+            ]
+        }
+    ]
+}
